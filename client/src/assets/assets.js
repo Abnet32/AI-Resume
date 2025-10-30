@@ -1,6 +1,6 @@
 import dummy_profile from './dummy_profile.png'
 
-export const dummyResumeData = [
+const dummyResumeData = [
     {
         // ----------------------------------------------------- Resume 1 ------------------------------------------------------
         personal_info: {
@@ -235,3 +235,4 @@ export const dummyResumeData = [
         createdAt: "2025-09-25T15:26:49.652Z"
     }
 ]
+export default dummyResumeData;
