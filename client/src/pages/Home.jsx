@@ -5,6 +5,7 @@ import Features from "../components/Home/Features";
 import Testimonial from "../components/Home/Testimonial";
 import CallToAction from "../components/Home/CallToAction";
 import Footer from "../components/Home/Footer";
+import Pricing from "../components/Home/Pricing";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Banner />
       <Hero />
       <Features />
+      <Pricing />
       <Testimonial />
       <CallToAction />
       <Footer />
