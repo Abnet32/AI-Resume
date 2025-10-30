@@ -6,7 +6,7 @@ const Footer = () => {
       <footer className="flex flex-wrap justify-center lg:justify-between overflow-hidden gap-10 md:gap-20 py-16 px-6 md:px-16 lg:px-24 xl:px-32 text-[13px] text-gray-500 bg-gradient-to-r via-green-200/60 to-white mt-40">
         <div className="flex flex-wrap items-start gap-10 md:gap-[60px] xl:gap-[140px]">
           <a href="https://prebuiltui.com">
-           <img src="/logo.svg" alt="logo" className="h-11 w-auto"/>
+            <img src="/logo.svg" alt="logo" className="h-11 w-auto" />
           </a>
           <div>
             <p className="text-slate-100 font-semibold">Product</p>
@@ -84,11 +84,7 @@ const Footer = () => {
             Making professional resume building accessible to everyone.
           </p>
           <div className="flex items-center gap-4 mt-3">
-            <a
-              href="https://dribbble.com/prebuiltui"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -108,11 +104,7 @@ const Footer = () => {
                 <path d="M8.56 2.75c4.37 6 6 9.42 8 17.72"></path>
               </svg>
             </a>
-            <a
-              href="https://www.linkedin.com/company/prebuiltui"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -131,7 +123,7 @@ const Footer = () => {
                 <circle cx="4" cy="4" r="2"></circle>
               </svg>
             </a>
-            <a href="https://x.com/prebuiltui" target="_blank" rel="noreferrer">
+            <a href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -148,11 +140,7 @@ const Footer = () => {
                 <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
               </svg>
             </a>
-            <a
-              href="https://www.youtube.com/@prebuiltui"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

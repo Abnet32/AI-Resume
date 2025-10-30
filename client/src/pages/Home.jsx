@@ -6,6 +6,7 @@ import Testimonial from "../components/Home/Testimonial";
 import CallToAction from "../components/Home/CallToAction";
 import Footer from "../components/Home/Footer";
 import Pricing from "../components/Home/Pricing";
+import Login from "./Login";
 
 const Home = () => {
   return (

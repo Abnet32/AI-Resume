@@ -1,13 +1,15 @@
 import React from "react";
 import Title from "./Title";
+import { GemIcon } from "lucide-react";
 
 const Pricing = () => {
   return (
-    <div
-      id="features"
-      className="flex flex-col items-center my-10 scroll-mt-12"
-    >
+    <div id="pricing" className="flex flex-col items-center my-10 scroll-mt-12">
       {" "}
+      <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10 rounded-full px-6 py-1.5">
+        <GemIcon className="size-4.5 stroke-green-600" />
+        <span>Pricing</span>
+      </div>
       <Title
         title="Choose Your Plan"
         description="Select the plan that best fits your learning needs and start your journey today. Upgrade, downgrade, or cancel anytime.
