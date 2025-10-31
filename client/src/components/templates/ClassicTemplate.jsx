@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin, Linkedin, Globe } from "lucide-react";
-
+import React from "react";
 const ClassicTemplate = ({ data, accentColor }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "";

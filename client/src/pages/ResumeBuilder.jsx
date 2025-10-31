@@ -14,6 +14,7 @@ import {
   User,
 } from "lucide-react";
 import PersonalInfoForm from "../components/PersonalInfoForm";
+import ResumePreview from "../components/ResumePreview";
 const ResumeBuilder = () => {
   const { resumeId } = useParams();
   const [resumeData, setResumeData] = useState({
@@ -35,6 +36,7 @@ const ResumeBuilder = () => {
     if (resume) {
       setResumeData(resume);
       document.title = resume.title;
+      console.log(resume.title);
     }
   };
 
@@ -117,16 +119,31 @@ const ResumeBuilder = () => {
               {/* form content */}
 
               <div className="space-y-6">
-                {activeSection.id === 'personal' && (
+                {activeSection.id === "personal" && (
                   <div>
-                    <PersonalInfoForm data={resumeData.personal_info} onChange={(data)=>setResumeData((prev => ({...prev, data})))} removeBackground={removeBackground} setRemoveBackground={setRemoveBackground}/>
-                </div>
+                    <PersonalInfoForm
+                      data={resumeData.personal_info}
+                      onChange={(data) =>
+                        setResumeData((prev) => ({ ...prev, data }))
+                      }
+                      removeBackground={removeBackground}
+                      setRemoveBackground={setRemoveBackground}
+                    />
+                  </div>
                 )}
               </div>
             </div>
           </div>
           {/* right panel preview */}
-          <div></div>
+          <div className="lg:col-span-7 max-lg:mt-6">
+            <div>{/* ---Buttons--- */}</div>
+            {/* ---resume preview */}
+            <ResumePreview
+              data={resumeData}
+              template={resumeData.template}
+              accentColor={resumeData.accent_color}
+            />
+          </div>
         </div>
       </div>
     </div>
