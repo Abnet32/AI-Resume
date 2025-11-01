@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin } from "lucide-react";
-
+import React from "react";
 const MinimalImageTemplate = ({ data, accentColor }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "";

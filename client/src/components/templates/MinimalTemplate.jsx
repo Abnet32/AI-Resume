@@ -1,4 +1,4 @@
-
+import React from "react";
 const MinimalTemplate = ({ data, accentColor }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "";
