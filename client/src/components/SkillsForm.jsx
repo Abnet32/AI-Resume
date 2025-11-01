@@ -36,7 +36,11 @@ const SkillsForm = ({ data, onChange }) => {
           value={newSkill}
           onKeyDown={handleKeyPress}
         />
-        <button onClick={addSkill} disabled={!newSkill.trim} className="flex items-center gap-2 px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+        <button
+          onClick={addSkill}
+          disabled={!newSkill.trim}
+          className="flex items-center gap-2 px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
           <Plus /> Add
         </button>
       </div>
@@ -64,7 +68,7 @@ const SkillsForm = ({ data, onChange }) => {
           <p className="text-sm">Add your technical and soft skill above</p>
         </div>
       )}
-      <div className="bg-blue-500 p-3 rounded-lg">
+      <div className="bg-blue-100 p-3 rounded-lg">
         <p className="text-sm text-blue-800">
           <strong>Tip:</strong> Add 8-12 relevant skills. Include both technical
           skills (programming languages, tools) and soft skills (leadership,
