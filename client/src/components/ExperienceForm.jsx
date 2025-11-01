@@ -14,7 +14,7 @@ const ExperienceForm = ({ data, onChange }) => {
     onChange([...data, newExperience]);
   };
   const removeExperience = (index) => {
-    const updated = data.filter((_, i) => i == index);
+    const updated = data.filter((_, i) => i !== index);
     onChange(updated);
   };
   const updateExperience = (index, field, value) => {
