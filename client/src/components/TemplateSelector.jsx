@@ -62,7 +62,7 @@ const TemplateSelector = ({selectedTemplate, onChange}) => {
                   )}
                   <div className='space-y-1'>
                       <h4 className='font-medium text-gray-800'>{template.name}</h4>
-                      <div className='mt-2 p-2 bg-blue-50 rounded text-xs text-gray-500 italic'>
+                      <div className='mt-2 p-2 bg-blue-50 rounded text-xs text-gray-500'>
                           {template.preview}
                       </div>
                   </div>
