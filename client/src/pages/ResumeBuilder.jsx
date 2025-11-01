@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import dummyResumeData from "../assets/assets";
 
 import {
@@ -20,23 +20,27 @@ import TemplateSelector from "../components/TemplateSelector";
 import ColorPicker from "../components/ColorPicker";
 import ProfessionalSummaryForm from "../components/ProfessionalSummaryForm";
 import ExperienceForm from "../components/ExperienceForm";
+import EducationForm from "../components/EducationForm";
 
 const ResumeBuilder = () => {
   const { resumeId } = useParams();
-
-  const [resumeData, setResumeData] = useState({
-    _id: "",
-    title: "",
-    personal_info: {},
-    summary: "",
-    experience: [],
-    education: [],
-    project: [],
-    skills: [],
-    template: "classic",
-    accent_color: "#3B82F6",
-    public: false,
-  });
+  const location = useLocation();
+  const existingData = location.state?.resumeData;
+  const [resumeData, setResumeData] = useState(
+    existingData || {
+      _id: "",
+      title: "",
+      personal_info: {},
+      summary: "",
+      experience: [],
+      education: [],
+      project: [],
+      skills: [],
+      template: "classic",
+      accent_color: "#3B82F6",
+      public: false,
+    }
+  );
 
   const loadExistingResume = async () => {
     const resume = dummyResumeData.find((resume) => resume._id === resumeId);
@@ -62,7 +66,8 @@ const ResumeBuilder = () => {
 
   useEffect(() => {
     loadExistingResume();
-  }, []);
+    document.title = resumeData.title || "Resume Builder";
+  }, [resumeData.title]);
 
   return (
     <div>
@@ -175,6 +180,17 @@ const ResumeBuilder = () => {
                       setResumeData((prev) => ({
                         ...prev,
                         experience: data,
+                      }))
+                    }
+                  />
+                )}
+                {activeSection.id === "education" && (
+                  <EducationForm
+                    data={resumeData.education}
+                    onChange={(data) =>
+                      setResumeData((prev) => ({
+                        ...prev,
+                        education: data,
                       }))
                     }
                   />

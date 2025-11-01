@@ -30,7 +30,7 @@ const Dashboard = () => {
   const createResume = async (event) => {
     event.preventDefault();
     setShowCreateResume(false);
-    navigate(`/app/builder/res123`);
+    navigate(`/app/builder/res123`, { state: { resumeTitle: title } });
   };
 
   const uploadResume = async (event) => {
@@ -86,7 +86,11 @@ const Dashboard = () => {
             return (
               <button
                 key={index}
-                onClick={() => navigate(`/app/builder/${resume._id}`)}
+                onClick={() =>
+                  navigate(`/app/builder/${resume._id}`, {
+                    state: { resumeData: resume },
+                  })
+                }
                 className="relative w-full sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 border group hover:shadow-lg transition-all duration-300 cursor-pointer"
                 style={{
                   background: `linear-gradient(135deg, ${baseColor}10, ${baseColor}40)`,
