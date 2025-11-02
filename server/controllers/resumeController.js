@@ -1,7 +1,7 @@
 // controller for creating a new resume
 // POST: /api/resumes/create
 
-import fs from 'fs';
+import fs from "fs";
 import ImageKit from "@imagekit/nodejs";
 import Resume from "../models/Resume.js";
 
@@ -86,16 +86,19 @@ export const getPublicResumeById = async (req, res) => {
 // PUT: /api/resumes/update
 
 export const updateResume = async (req, res) => {
+ 
   try {
     const userId = req.userId;
     const { resumeId, resumeData, removeBackground } = req.body;
-      const image = req.file;
-      
-      
-    let resumeDataCopy = JSON.parse(JSON.stringify(resumeData));
+    const image = req.file;
 
+    let resumeDataCopy;
+    if (typeof resumeData === "string") {
+      resumeDataCopy = await JSON.parse(resumeData);
+    } else {
+      resumeDataCopy = structuredClone(resumeData);
+    }
     if (image) {
-
       const imageBufferData = fs.createReadStream(image.path);
 
       const response = await imageKit.files.upload({
@@ -103,12 +106,13 @@ export const updateResume = async (req, res) => {
         fileName: "resume.png",
         folder: "user-resumes",
         transformation: {
-          pre: 'w-300, h-300, fo-face, z-0.75' + (removeBackground ? ',e-bgremove' : '')
-        }
+          pre:
+            "w-300, h-300, fo-face, z-0.75" +
+            (removeBackground ? ",e-bgremove" : ""),
+        },
       });
 
       resumeDataCopy.personal_info.image = response.url;
-
     }
 
     const resume = await Resume.findByIdAndUpdate(
