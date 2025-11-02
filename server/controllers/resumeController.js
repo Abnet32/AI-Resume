@@ -15,10 +15,10 @@ export const createResume = async (req, res) => {
 
     // return success message
     return res
-      .satatue(201)
+      .status(201)
       .json({ message: "Resume created successfully", resume: newResume });
   } catch (error) {
-    return res.satatue(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 
@@ -33,9 +33,9 @@ export const deleteResume = async (req, res) => {
     await Resume.findOneAndDelete({ userId, _id: resumeId });
 
     // return success message
-    return res.satatue(200).json({ message: "Resume deleted successfully" });
+    return res.status(200).json({ message: "Resume deleted successfully" });
   } catch (error) {
-    return res.satatue(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 
@@ -49,7 +49,7 @@ export const getResumeById = async (req, res) => {
     const resume = await Resume.findOne({ userId, _id: resumeId });
 
     if (!resume) {
-      return res.satatue(404).json({ message: "Resume not found" });
+      return res.status(404).json({ message: "Resume not found" });
     }
 
     resume._v = undefined;
@@ -57,9 +57,9 @@ export const getResumeById = async (req, res) => {
     resume.updatedAt = undefined;
 
     // return success message
-    return res.satatue(200).json({ resume });
+    return res.status(200).json({ resume });
   } catch (error) {
-    return res.satatue(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 
@@ -72,13 +72,13 @@ export const getPublicResumeById = async (req, res) => {
     const resume = await Resume.findOne({ public: true, _id: resumeId });
 
     if (!resume) {
-      return res.satatue(404).json({ message: "Resume not found" });
+      return res.status(404).json({ message: "Resume not found" });
     }
 
     // return success message
-    return res.satatue(200).json({ resume });
+    return res.status(200).json({ resume });
   } catch (error) {
-    return res.satatue(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 
@@ -118,8 +118,8 @@ export const updateResume = async (req, res) => {
     );
 
     // return success message
-    return res.satatue(200).json({ message: "Saved successfully", resume });
+    return res.status(200).json({ message: "Saved successfully", resume });
   } catch (error) {
-    return res.satatue(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
