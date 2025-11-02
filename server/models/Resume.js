@@ -29,7 +29,7 @@ const ResmeSchema = new mongoose.Schema(
         is_current: { type: Boolean },
       },
     ],
-    projects: [
+    project: [
       {
         name: { type: String },
         type: { type: String },
