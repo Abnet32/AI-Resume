@@ -19,8 +19,8 @@ const Pricing = () => {
         <div className="w-72 bg-white text-center text-gray-800/80 border border-gray-200 p-6 pb-16 rounded-lg">
           <p className="font-semibold">Basic</p>
           <h1 className="text-3xl font-semibold">
-            $0
-            <span className="text-gray-500 text-sm font-normal">/month</span>
+            ETB 299
+            <span className="text-gray-500 text-sm font-normal">/Year</span>
           </h1>
           <ul className="list-none text-gray-500 text-sm mt-6 space-y-1">
             <li className="flex items-center gap-2">
@@ -36,7 +36,7 @@ const Pricing = () => {
                   fill="indigo"
                 />
               </svg>
-              <p>Access to all basic courses</p>
+              <p>Create resumes</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -51,7 +51,7 @@ const Pricing = () => {
                   fill="indigo"
                 />
               </svg>
-              <p>Community support</p>
+              <p>Access resume templates</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -66,7 +66,7 @@ const Pricing = () => {
                   fill="indigo"
                 />
               </svg>
-              <p>10 practice projects</p>
+              <p>4 basic templates</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -81,7 +81,7 @@ const Pricing = () => {
                   fill="indigo"
                 />
               </svg>
-              <p>Course completion certificate</p>
+              <p>Save and manage 1 resume</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -96,7 +96,7 @@ const Pricing = () => {
                   fill="indigo"
                 />
               </svg>
-              <p>Basic code review</p>
+              <p>Basic community support</p>
             </li>
           </ul>
           <button
@@ -110,7 +110,7 @@ const Pricing = () => {
         <div className="w-72 bg-indigo-500 relative text-center text-white border border-gray-500/30 p-6 pb-14 rounded-lg">
           <p className="font-semibold pt-2">Standared</p>
           <h1 className="text-3xl font-semibold">
-            $19<span className="text-sm font-normal">/month</span>
+            ETB 599<span className="text-sm font-normal">/Year</span>
           </h1>
           <ul className="list-none text-white text-sm mt-6 space-y-1">
             <li className="flex items-center gap-2">
@@ -126,7 +126,7 @@ const Pricing = () => {
                   fill="currentColor"
                 />
               </svg>
-              <p>Access to all Pro courses</p>
+              <p>Access to all template</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -156,7 +156,7 @@ const Pricing = () => {
                   fill="currentColor"
                 />
               </svg>
-              <p>30 practice projects</p>
+              <p>LinkedIn AI optimization</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -171,7 +171,7 @@ const Pricing = () => {
                   fill="currentColor"
                 />
               </svg>
-              <p>Course completion certificate</p>
+              <p>Faster AI processing</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -186,7 +186,7 @@ const Pricing = () => {
                   fill="currentColor"
                 />
               </svg>
-              <p>Advance code review</p>
+              <p>Advanced AI career assistant</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -230,8 +230,8 @@ const Pricing = () => {
         <div className="w-72 bg-white text-center text-gray-800/80 border border-gray-200 p-6 rounded-lg">
           <p className="font-semibold">Enterprise</p>
           <h1 className="text-3xl font-semibold">
-            $29
-            <span className="text-gray-500 text-sm font-normal">/month</span>
+            ETB 999
+            <span className="text-gray-500 text-sm font-normal">/Year</span>
           </h1>
           <ul className="list-none text-gray-500 text-sm mt-6 space-y-1">
             <li className="flex items-center gap-2">
@@ -247,7 +247,7 @@ const Pricing = () => {
                   fill="indigo"
                 />
               </svg>
-              <p>Access to all courses</p>
+              <p>Unlimited templates</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -277,7 +277,7 @@ const Pricing = () => {
                   fill="indigo"
                 />
               </svg>
-              <p>Unlimited projects</p>
+              <p>AI job suggestions</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -292,7 +292,7 @@ const Pricing = () => {
                   fill="indigo"
                 />
               </svg>
-              <p>Course completion certificate</p>
+              <p>Full AI resume writing</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -307,7 +307,7 @@ const Pricing = () => {
                   fill="indigo"
                 />
               </svg>
-              <p>Premium code review</p>
+              <p>Resume analytic</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -322,7 +322,7 @@ const Pricing = () => {
                   fill="indigo"
                 />
               </svg>
-              <p>Weekly 1-on-1 mentoring</p>
+              <p>AI interview preparation</p>
             </li>
             <li className="flex items-center gap-2">
               <svg
@@ -337,7 +337,7 @@ const Pricing = () => {
                   fill="indigo"
                 />
               </svg>
-              <p>Job guarantee</p>
+              <p>Multi-language resume</p>
             </li>
           </ul>
           <button
