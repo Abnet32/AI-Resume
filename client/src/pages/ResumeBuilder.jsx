@@ -302,7 +302,7 @@ const changeResumeVisibility = async () => {
                     error: "Failed to save resume",
                   });
                 }}
-                className="bg-gradient-to-br from-green-100 to-green-200 ring-green-300 text-green-600 ring hover:ring-green-400 transition-all rounded-md px-6 py-2 mt-6 text-sm"
+                className="bg-gradient-to-br from-indigo-100 to-green-200 ring-indigo-300 text-indigo-600 ring hover:ring-indigo-400 transition-all rounded-md px-6 py-2 mt-6 text-sm"
               >
                 Save Changes
               </button>
@@ -316,7 +316,7 @@ const changeResumeVisibility = async () => {
                 {resumeData.public && (
                   <button
                     onClick={handleShare}
-                    className="flex items-center px-3 gap-2 p-2 bg-green-600 text-white text-xs  rounded-lg hover:bg-green-700 transition-colors"
+                    className="flex items-center px-3 gap-2 p-2 bg-blue-600 text-white text-xs  rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     <Share2Icon className="size-4 inline-block" /> Share
                   </button>
@@ -334,7 +334,7 @@ const changeResumeVisibility = async () => {
                 </button>
                 <button
                   onClick={downloadResume}
-                  className="flex items-center gap-2 text-xs p-2 px-6 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+                  className="flex items-center gap-2 text-xs p-2 px-6 rounded-lg bg-green-500 text-white hover:bg-green-600 transition-colors"
                 >
                   <DownloadIcon className="size-4" /> Download
                 </button>

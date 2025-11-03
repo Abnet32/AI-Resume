@@ -26,7 +26,7 @@ const Navbar = () => {
           </div>{" "}
           <button
             onClick={logoutUser}
-            className="flex items-center gap-2 px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-all shadow-sm hover:shadow-md active:scale-95"
+            className="flex items-center gap-2 px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-all shadow-sm hover:shadow-md active:scale-95"
           >
             <LogOutIcon className="size-4" />
             <span className="hidden sm:inline">Logout</span>

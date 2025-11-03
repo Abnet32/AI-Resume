@@ -12,7 +12,7 @@ const CallToAction = () => {
         </p>
         <a
           href="#"
-          className="flex items-center gap-2 rounded py-3 px-8 bg-green-600 hover:bg-green-700 transition text-white"
+          className="flex items-center gap-2 rounded py-3 px-8 bg-indigo-600 hover:bg-indigo-700 transition text-white"
         >
           <span>Get Started</span>
           <svg

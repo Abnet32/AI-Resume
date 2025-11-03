@@ -6,8 +6,8 @@ const Pricing = () => {
   return (
     <div id="pricing" className="flex flex-col items-center my-10 scroll-mt-12">
       {" "}
-      <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10 rounded-full px-6 py-1.5">
-        <GemIcon className="size-4.5 stroke-green-600" />
+      <div className="flex items-center gap-2 text-sm text-indigo-600 bg-indigo-400/10 rounded-full px-6 py-1.5">
+        <GemIcon className="size-4.5 stroke-indigo-600" />
         <span>Pricing</span>
       </div>
       <Title
@@ -19,7 +19,7 @@ const Pricing = () => {
         <div className="w-72 bg-white text-center text-gray-800/80 border border-gray-200 p-6 pb-16 rounded-lg">
           <p className="font-semibold">Basic</p>
           <h1 className="text-3xl font-semibold">
-            $9
+            $0
             <span className="text-gray-500 text-sm font-normal">/month</span>
           </h1>
           <ul className="list-none text-gray-500 text-sm mt-6 space-y-1">
@@ -33,7 +33,7 @@ const Pricing = () => {
               >
                 <path
                   d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z"
-                  fill="green"
+                  fill="indigo"
                 />
               </svg>
               <p>Access to all basic courses</p>
@@ -48,7 +48,7 @@ const Pricing = () => {
               >
                 <path
                   d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z"
-                  fill="green"
+                  fill="indigo"
                 />
               </svg>
               <p>Community support</p>
@@ -63,7 +63,7 @@ const Pricing = () => {
               >
                 <path
                   d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z"
-                  fill="green"
+                  fill="indigo"
                 />
               </svg>
               <p>10 practice projects</p>
@@ -78,7 +78,7 @@ const Pricing = () => {
               >
                 <path
                   d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z"
-                  fill="green"
+                  fill="indigo"
                 />
               </svg>
               <p>Course completion certificate</p>
@@ -93,7 +93,7 @@ const Pricing = () => {
               >
                 <path
                   d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z"
-                  fill="green"
+                  fill="indigo"
                 />
               </svg>
               <p>Basic code review</p>
@@ -101,13 +101,13 @@ const Pricing = () => {
           </ul>
           <button
             type="button"
-            className="bg-green-500 text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-green-600 transition-all"
+            className="bg-indigo-500 text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-indigo-600 transition-all"
           >
             Get Started
           </button>
         </div>
 
-        <div className="w-72 bg-green-500 relative text-center text-white border border-gray-500/30 p-6 pb-14 rounded-lg">
+        <div className="w-72 bg-indigo-500 relative text-center text-white border border-gray-500/30 p-6 pb-14 rounded-lg">
           <p className="font-semibold pt-2">Standared</p>
           <h1 className="text-3xl font-semibold">
             $19<span className="text-sm font-normal">/month</span>
@@ -221,7 +221,7 @@ const Pricing = () => {
           </ul>
           <button
             type="button"
-            className="bg-white text-sm w-full py-2 rounded text-green-500 font-medium mt-7 hover:bg-gray-200 transition-all"
+            className="bg-white text-sm w-full py-2 rounded text-indigo-500 font-medium mt-7 hover:bg-gray-200 transition-all"
           >
             Get Started
           </button>
@@ -244,7 +244,7 @@ const Pricing = () => {
               >
                 <path
                   d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z"
-                  fill="green"
+                  fill="indigo"
                 />
               </svg>
               <p>Access to all courses</p>
@@ -259,7 +259,7 @@ const Pricing = () => {
               >
                 <path
                   d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z"
-                  fill="green"
+                  fill="indigo"
                 />
               </svg>
               <p>Dedicated support</p>
@@ -274,7 +274,7 @@ const Pricing = () => {
               >
                 <path
                   d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z"
-                  fill="green"
+                  fill="indigo"
                 />
               </svg>
               <p>Unlimited projects</p>
@@ -289,7 +289,7 @@ const Pricing = () => {
               >
                 <path
                   d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z"
-                  fill="green"
+                  fill="indigo"
                 />
               </svg>
               <p>Course completion certificate</p>
@@ -304,7 +304,7 @@ const Pricing = () => {
               >
                 <path
                   d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z"
-                  fill="green"
+                  fill="indigo"
                 />
               </svg>
               <p>Premium code review</p>
@@ -319,7 +319,7 @@ const Pricing = () => {
               >
                 <path
                   d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z"
-                  fill="green"
+                  fill="indigo"
                 />
               </svg>
               <p>Weekly 1-on-1 mentoring</p>
@@ -334,7 +334,7 @@ const Pricing = () => {
               >
                 <path
                   d="M7.162 13.5 2.887 9.225l1.07-1.069 3.205 3.207 6.882-6.882 1.069 1.07z"
-                  fill="green"
+                  fill="indigo"
                 />
               </svg>
               <p>Job guarantee</p>
@@ -342,7 +342,7 @@ const Pricing = () => {
           </ul>
           <button
             type="button"
-            className="bg-green-500 text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-green-600 transition-all"
+            className="bg-indigo-500 text-sm w-full py-2 rounded text-white font-medium mt-7 hover:bg-indigo-600 transition-all"
           >
             Get Started
           </button>
