@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link,  } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import {
   ArrowLeftIcon,
@@ -12,7 +12,7 @@ import {
   FileText,
   FolderIcon,
   GraduationCap,
-  Share2,
+  Share2Icon,
   Sparkles,
   User,
 } from "lucide-react";
@@ -33,11 +33,12 @@ import toast from "react-hot-toast";
 const ResumeBuilder = () => {
   const { resumeId } = useParams();
   const { token } = useSelector((state) => state.auth);
+
   const [resumeData, setResumeData] = useState({
     _id: "",
     title: "",
     personal_info: {},
-    summary: "",
+    professional_summary: "",
     experience: [],
     education: [],
     project: [],
@@ -46,20 +47,6 @@ const ResumeBuilder = () => {
     accent_color: "#3B82F6",
     public: false,
   });
-
-  const loadExistingResume = async () => {
-    try {
-      const { data } = await api.get("/api/resumes/get/" + resumeId, {
-        headers: { Authorization: token },
-      });
-      if (data.resume) {
-        setResumeData(data.resume);
-        document.title = data.resume.title;
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
 
   const [activeSectionIndex, setActiveSectionIndex] = useState(0);
   const [removeBackground, setRemoveBackground] = useState(false);
@@ -79,84 +66,105 @@ const ResumeBuilder = () => {
 
   const activeSection = sections[activeSectionIndex];
 
-    useEffect(() => {
-      loadExistingResume();
-    }, []);
-const changeResumeVisibility = async () => {
-  try {
-    const formData = new FormData();
-    formData.append("resumeId", resumeId);
-    formData.append(
-      "resumeData",
-      JSON.stringify({ public: !resumeData.public })
-    );
-    const { data } = await api.put("/api/resumes/update", formData, {
-      headers: {
-        Authorization: token,
-      },
-    });
-    setResumeData({ ...resumeData, public: !resumeData.public });
-    toast.success("Resume visibility Changed!");
-  } catch (error) {
-    console.error("Error updating resume visibility:", error);
-  }
-};
+  // Load existing resume if resumeId exists
+  const loadExistingResume = async () => {
+    try {
+      if (!resumeId) {
+        console.log("Creating a new resume");
+        document.title = "New Resume";
+        return;
+      }
+
+      const response = await api.get("/api/resumes/get/" + resumeId, {
+        headers: { Authorization: token },
+      });
+
+      if (response.data.resume) {
+        setResumeData(response.data.resume);
+        document.title = response.data.resume.title;
+      }
+    } catch (error) {
+      console.error("Failed to load resume:", error);
+      toast.error("Failed to load resume.");
+    }
+  };
+
+  useEffect(() => {
+    loadExistingResume();
+  }, [resumeId]);
+
+  const changeResumeVisibility = async () => {
+    if (!resumeId) return;
+
+    try {
+      const formData = new FormData();
+      formData.append("resumeId", resumeId);
+      formData.append(
+        "resumeData",
+        JSON.stringify({ public: !resumeData.public })
+      );
+
+      const response = await api.put("/api/resumes/update", formData, {
+        headers: { Authorization: token },
+      });
+
+      setResumeData({ ...resumeData, public: !resumeData.public });
+      toast.success(response.data.message);
+    } catch (error) {
+      console.error("Error updating resume visibility:", error);
+      toast.error("Failed to update visibility.");
+    }
+  };
+
   const downloadResume = () => {
     window.print();
   };
 
- const saveResume = async () => {
-   try {
-     let updatedResumeData = structuredClone(resumeData);
+  const saveResume = async () => {
+    try {
+      let updatedResumeData = structuredClone(resumeData);
 
-     //Remove image from resume data
-     if (typeof resumeData.personal_info.image === "object") {
-       delete updatedResumeData.personal_info.image;
-     }
+      // Remove image if it's a File object
+      if (typeof resumeData.personal_info.image === "object") {
+        delete updatedResumeData.personal_info.image;
+      }
 
-     const formData = new FormData();
-     formData.append("resumeId", resumeId);
-     formData.append("resumeData", JSON.stringify(updatedResumeData));
+      const formData = new FormData();
+      resumeId && formData.append("resumeId", resumeId);
+      formData.append("resumeData", JSON.stringify(updatedResumeData));
 
-     removeBackground && formData.append("removeBackground", "yes");
-     typeof resumeData.personal_info.image === "object" &&
-       formData.append("image", resumeData.personal_info.image);
+      removeBackground && formData.append("removeBackground", "yes");
+      if (typeof resumeData.personal_info.image === "object") {
+        formData.append("image", resumeData.personal_info.image);
+      }
 
-     const { data } = await api.put("/api/resumes/update", formData, {
-       headers: {
-         Authorization: token,
-       },
-     });
-     setResumeData(data.resume);
-     /* toast.success(data.message); */
-   } catch (error) {
-     console.error("Error saving resume:", error);
-     toast.error("Failed to save resume.");
-   }
- };
-  const handleShare = () => {
-    const frontendUrl = window.location.href.split("/app")[0];
-    const resumeUrl = frontendUrl + "/view/" + resumeId;
-    if (navigator.share) {
-      navigator.share({ url: resumeUrl, text: "My Resume" });
-    } else {
-      alert("share not supported on this browser.");
+      const response = await api.put("/api/resumes/update", formData, {
+        headers: { Authorization: token },
+      });
+
+      setResumeData(response.data.resume);
+      toast.success("Resume saved successfully!");
+    } catch (error) {
+      console.error("Error saving resume:", error);
+      toast.error("Failed to save resume.");
     }
   };
 
+  const handleShare = () => {
+    if (!resumeId) return;
+
+    const frontendUrl = window.location.href.split("/app")[0];
+    const resumeUrl = frontendUrl + "/view/" + resumeId;
+
+    if (navigator.share) {
+      navigator.share({ url: resumeUrl, text: "My Resume" });
+    } else {
+      alert("Share not supported on this browser.");
+    }
+  };
 
   return (
     <div>
-      {/* Back Button */}
-      {/* <div className="max-w-7xl mx-auto px-4 py-6">
-        <Link
-          to="/app"
-          className="inline-flex gap-2 items-center text-slate-500 hover:text-slate-700 transition-all"
-        >
-          <ArrowLeftIcon className="size-4" /> Back to Dashboard
-        </Link>
-      </div> */}
-
       <div className="max-w-7xl mx-auto px-4 pb-8">
         <div className="grid lg:grid-cols-12 gap-8">
           {/* LEFT PANEL */}
@@ -176,7 +184,6 @@ const changeResumeVisibility = async () => {
               {/* Section Navigation */}
               <div className="flex justify-between items-center mb-6 border-b border-gray-300 py-1">
                 <div className="flex items-center gap-2">
-                  {" "}
                   <TemplateSelector
                     selectedTemplate={resumeData.template}
                     onChange={(template) =>
@@ -246,17 +253,13 @@ const changeResumeVisibility = async () => {
                         professional_summary: data,
                       }))
                     }
-                    setResumeData={setResumeData}
                   />
                 )}
                 {activeSection.id === "experience" && (
                   <ExperienceForm
                     data={resumeData.experience}
                     onChange={(data) =>
-                      setResumeData((prev) => ({
-                        ...prev,
-                        experience: data,
-                      }))
+                      setResumeData((prev) => ({ ...prev, experience: data }))
                     }
                   />
                 )}
@@ -264,10 +267,7 @@ const changeResumeVisibility = async () => {
                   <EducationForm
                     data={resumeData.education}
                     onChange={(data) =>
-                      setResumeData((prev) => ({
-                        ...prev,
-                        education: data,
-                      }))
+                      setResumeData((prev) => ({ ...prev, education: data }))
                     }
                   />
                 )}
@@ -275,10 +275,7 @@ const changeResumeVisibility = async () => {
                   <ProjectForm
                     data={resumeData.project}
                     onChange={(data) =>
-                      setResumeData((prev) => ({
-                        ...prev,
-                        project: data,
-                      }))
+                      setResumeData((prev) => ({ ...prev, project: data }))
                     }
                   />
                 )}
@@ -286,14 +283,12 @@ const changeResumeVisibility = async () => {
                   <SkillsForm
                     data={resumeData.skills}
                     onChange={(data) =>
-                      setResumeData((prev) => ({
-                        ...prev,
-                        skills: data,
-                      }))
+                      setResumeData((prev) => ({ ...prev, skills: data }))
                     }
                   />
                 )}
               </div>
+
               <button
                 onClick={() => {
                   toast.promise(saveResume(), {
@@ -348,8 +343,6 @@ const changeResumeVisibility = async () => {
               accentColor={resumeData.accent_color}
             />
           </div>
-
-          <div></div>
         </div>
       </div>
     </div>
