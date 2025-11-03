@@ -103,7 +103,7 @@ export const updateResume = async (req, res) => {
 
       const response = await imageKit.files.upload({
         file: imageBufferData,
-        fileName: "resume.png",
+        fileName: `resume_${Date.now()}.png`,
         folder: "user-resumes",
         transformation: {
           pre:

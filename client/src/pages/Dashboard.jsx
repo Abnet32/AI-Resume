@@ -1,12 +1,10 @@
 // check edit resume title
 import {
   FilePenLineIcon,
-  LoaderCircle,
   LoaderCircleIcon,
   PencilIcon,
   PlusIcon,
   TrashIcon,
-  Upload,
   UploadCloud,
   UploadCloudIcon,
   XIcon,
@@ -19,7 +17,7 @@ import toast from "react-hot-toast";
 import api from "../configs/api.js";
 import pdfToText from "react-pdftotext";
 const Dashboard = () => {
-  const {  token } = useSelector((state) => state.auth);
+  const {  user, token } = useSelector((state) => state.auth);
 
   const colors = ["#9333ea", "#d97706", "#dc2626", "#0284c7", "#16a34a"];
   const [allResumes, setAllResumes] = React.useState([]);
@@ -137,9 +135,13 @@ const Dashboard = () => {
   return (
     <div>
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <p className="text-2xl font-medium mb-6 bg-gradient-to-r from-slate-600 to-slate-700 bg-clip-text text-transparent sm:hidden">
-          Welcome, Joe Doe
-        </p>
+        {/* Header Section */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-slate-800 mb-2">My Resumes</h1>
+          <p className="text-slate-600">
+            Create, manage, and export your professional resumes
+          </p>
+        </div>
         <div className="flex gap-4">
           <button
             onClick={() => setShowCreateResume(true)}
@@ -161,7 +163,16 @@ const Dashboard = () => {
           </button>
         </div>
         <hr className="border-slate-300 my-6 sm:w-[305px]" />
-
+        {allResumes.length > 0 ? (
+          <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold text-slate-800">
+            Your Resumes ({allResumes.length})
+          </h2>
+        </div>
+        ) : (
+            <div></div>
+        ) }
+        
         <div className="grid grid-cols-2 sm:flex flex-wrap gap-4">
           {allResumes.map((resume, index) => {
             const baseColor = colors[index % colors.length];

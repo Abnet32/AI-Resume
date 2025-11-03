@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../app/features/authSlice.js";
+import { LogOutIcon, UserCircle2Icon } from "lucide-react";
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -17,12 +18,18 @@ const Navbar = () => {
           <img src="/logo.svg" alt="logo" className="h-11 w-auto" />
         </Link>
         <div className="flex items-center gap-4 text-sm">
-          <p className="max-sm:hidden">Hi, {user?.name}</p>
+          <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-lg border border-slate-200">
+            <UserCircle2Icon className="size-5 text-slate-600" />
+            <p className="text-sm text-slate-700">
+              <span className="font-semibold">{user.name}</span>
+            </p>
+          </div>{" "}
           <button
             onClick={logoutUser}
-            className="bg-white hover:bg-slate-50 border border-gray-300 px-7 py-1.5 rounded-full active:scale-95 transition-all"
+            className="flex items-center gap-2 px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-all shadow-sm hover:shadow-md active:scale-95"
           >
-            Logout
+            <LogOutIcon className="size-4" />
+            <span className="hidden sm:inline">Logout</span>
           </button>
         </div>
       </div>
