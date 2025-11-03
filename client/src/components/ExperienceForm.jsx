@@ -1,7 +1,14 @@
-import { Briefcase, Plus, Sparkles, Trash2 } from "lucide-react";
-import React from "react";
+import { Briefcase, Loader2, Plus, Sparkles, Trash2 } from "lucide-react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import api from "../configs/api";
+import toast from "react-hot-toast";
 
 const ExperienceForm = ({ data, onChange }) => {
+
+      const { token } = useSelector((state) => state.auth);
+      const [generatingIndex, setGeneratingIndex] = useState(-1);
+     
   const addExperience = () => {
     const newExperience = {
       company: "",
@@ -22,7 +29,23 @@ const ExperienceForm = ({ data, onChange }) => {
     updated[index] = { ...updated[index], [field]: value };
     onChange(updated);
   };
-
+ const generateDescription = async (index) => {
+     setGeneratingIndex(index);
+     const experience = data[index]
+   const prompt = `enhance this job description ${experience.description} for position of ${experience.position} at ${experience.company}`;
+      try {
+        const {data} = await api.post(
+          "/api/ai/enhance-job-desc",
+          { userContent: prompt },
+          { headers: { Authorization: token } }
+        );
+        updateExperience(index, "description", data.enhancedContent)
+      } catch (error) {
+        toast.error(error.message);
+      } finally {
+        setGeneratingIndex(-1);
+      }
+ };
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -98,21 +121,58 @@ const ExperienceForm = ({ data, onChange }) => {
                   type="month"
                   className="px-3 py-2 text-sm rounded-lg disabled:bg-gray-100"
                 />
-                  </div>
-                  <label className="flex items-center gap-2">
-                      <input type="checkbox" checked={experience.is_current || false} onChange={(e) => {
-                          updateExperience(index, "is_current", e.target.checked ? true : false);
-                      }} className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"/><span className="text-sm text-gray-700">Currently working here</span>
+              </div>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={experience.is_current || false}
+                  onChange={(e) => {
+                    updateExperience(
+                      index,
+                      "is_current",
+                      e.target.checked ? true : false
+                    );
+                  }}
+                  className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                />
+                <span className="text-sm text-gray-700">
+                  Currently working here
+                </span>
+              </label>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label className="text-sm font-medium text-gray-700">
+                    Job Description
                   </label>
-                  <div className="space-y-2" >
-                      <div className="flex items-center justify-between">
-                          <label className="text-sm font-medium text-gray-700">Job Description</label>
-                          <button className="flex items-center gap-1 px-2 py-1 text-xs bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors disabled:opacity-50">
-                              <Sparkles className="w-3 h-3" /> Enhance with AI
-                          </button>
-                      </div>
-                  </div>
-                  <textarea value={experience.description || ""} onChange={(e)=> updateExperience(index, "description", e.target.value)} rows={4} className="w-full text-sm px-3 py-2 rounded-lg resize-none" placeholder="Describe your key responsibilities and acheivements..."/>
+                  <button
+                    onClick={() => generateDescription(index)}
+                    disabled={
+                      generatingIndex === index ||
+                      !experience.position ||
+                      !experience.company
+                    }
+                    className="flex items-center gap-1 px-2 py-1 text-xs bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors disabled:opacity-50"
+                  >
+                    {generatingIndex === index ? (
+                      <Loader2 className="w-3 h-3 animate-spin" />
+                    ) : (
+                      <Sparkles className="w-3 h-3" />
+                    )}
+                    {generatingIndex === index
+                      ? "Enhancing..."
+                      : "Enhance with AI"}
+                  </button>
+                </div>
+              </div>
+              <textarea
+                value={experience.description || ""}
+                onChange={(e) =>
+                  updateExperience(index, "description", e.target.value)
+                }
+                rows={4}
+                className="w-full text-sm px-3 py-2 rounded-lg resize-none"
+                placeholder="Describe your key responsibilities and acheivements..."
+              />
             </div>
           ))}
         </div>
