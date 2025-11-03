@@ -15,18 +15,18 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import api from "../configs/api.js";
-import pdfToText from "react-pdftotext";
+// import pdfToText from "react-pdftotext";
 const Dashboard = () => {
   const {   token } = useSelector((state) => state.auth);
 
   const colors = ["#9333ea", "#d97706", "#dc2626", "#0284c7", "#16a34a"];
   const [allResumes, setAllResumes] = React.useState([]);
   const [showCreateResume, setShowCreateResume] = useState(false);
-  const [showUploadResume, setShowUploadResume] = useState(false);
+  // const [showUploadResume, setShowUploadResume] = useState(false);
   const [title, setTitle] = useState("");
-  const [resume, setResume] = useState(null);
+  // const [resume, setResume] = useState(null);
   const [editResumeId, setEditResumeId] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -63,29 +63,29 @@ const Dashboard = () => {
     }
   };
 
-  const uploadResume = async (event) => {
-    event.preventDefault();
-    setIsLoading(true);
-    try {
-      const resumeText = await pdfToText(resume);
-      const { data } = await api.post(
-        "/api/ai/upload-resume",
-        { title, resumeText },
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-      setTitle("");
-      setResume(null);
-      setShowUploadResume(false);
-      navigate(`/app/builder/${data.resumeId}`);
-    } catch (error) {
-      toast.error(error.response?.data.message || error.message);
-    }
-    setIsLoading(false);
-  };
+  // const uploadResume = async (event) => {
+  //   event.preventDefault();
+  //   setIsLoading(true);
+  //   try {
+  //     const resumeText = await pdfToText(resume);
+  //     const { data } = await api.post(
+  //       "/api/ai/upload-resume",
+  //       { title, resumeText },
+  //       {
+  //         headers: {
+  //           Authorization: token,
+  //         },
+  //       }
+  //     );
+  //     setTitle("");
+  //     setResume(null);
+  //     setShowUploadResume(false);
+  //     navigate(`/app/builder/${data.resumeId}`);
+  //   } catch (error) {
+  //     toast.error(error.response?.data.message || error.message);
+  //   }
+  //   setIsLoading(false);
+  // };
   const editTitle = async (event) => {
     try {
       event.preventDefault();
@@ -152,7 +152,7 @@ const Dashboard = () => {
               Create Resume
             </p>
           </button>
-          <button
+          {/* <button
             onClick={() => setShowUploadResume(true)}
             className="w-full bg-white sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 text-slate-600 border border-dashed border-slate-300 group hover:border-indigo-500 hover:shadow-lg transition-all duration-300 cursor-pointer"
           >
@@ -160,7 +160,7 @@ const Dashboard = () => {
             <p className="text-sm group-hover:text-indigo-600 transition-all-duration-300">
               Upload Existing
             </p>
-          </button>
+          </button> */}
         </div>
         <hr className="border-slate-300 my-6 sm:w-[305px]" />
         {allResumes.length > 0 ? (
@@ -258,7 +258,7 @@ const Dashboard = () => {
             </div>
           </form>
         )}
-        {showUploadResume && (
+        {/* {showUploadResume && (
           <form
             onSubmit={uploadResume}
             onClick={() => setShowUploadResume(false)}
@@ -321,7 +321,7 @@ const Dashboard = () => {
               />
             </div>
           </form>
-        )}
+        )} */}
 
         {editResumeId && (
           <form
