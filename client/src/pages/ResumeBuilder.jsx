@@ -165,7 +165,7 @@ const changeResumeVisibility = async () => {
               {/* Progress Bar */}
               <hr className="absolute top-0 left-0 right-0 border-2 border-gray-200" />
               <div
-                className="absolute top-0 left-0 h-1 bg-gradient-to-r from-green-500 to-green-600 border-none transition-all duration-700"
+                className="absolute top-0 left-0 h-1 bg-gradient-to-r from-indigo-500 to-indigo-600 border-none transition-all duration-700"
                 style={{
                   width: `${
                     (activeSectionIndex * 100) / (sections.length - 1)

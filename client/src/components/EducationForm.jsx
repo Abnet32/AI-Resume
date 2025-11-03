@@ -33,7 +33,7 @@ const EducationForm = ({ data, onChange }) => {
         </div>
         <button
           onClick={addEducation}
-          className="flex items-center gap-2 px-3 py-1 text-sm bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors"
+          className="flex items-center gap-2 px-3 py-1 text-sm bg-indigo-100 text-indigo-700 rounded-lg hover:bg-indigo-200 transition-colors"
         >
           <Plus className="size-4" /> Add Education
         </button>
