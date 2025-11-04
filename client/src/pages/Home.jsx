@@ -7,6 +7,7 @@ import CallToAction from "../components/Home/CallToAction";
 import Footer from "../components/Home/Footer";
 import Pricing from "../components/Home/Pricing";
 import Login from "./Login";
+import Contact from "../components/Home/Contact";
 
 const Home = () => {
   return (
@@ -14,9 +15,10 @@ const Home = () => {
       <Banner />
       <Hero />
       <Features />
-      <Pricing />
+      {/* <Pricing /> */}
       <Testimonial />
       <CallToAction />
+      <Contact />
       <Footer />
     </div>
   );

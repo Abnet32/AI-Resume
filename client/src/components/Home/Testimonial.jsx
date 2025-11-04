@@ -58,7 +58,7 @@ const Testimonial = () => {
         </div>
       </div>
       <p className="text-sm py-4 text-gray-800">
-        Radiant made undercutting all of our competitors an absolute breeze.
+        The AI guidance made me creating a standout resume
       </p>
     </div>
   );
