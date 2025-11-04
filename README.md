@@ -56,7 +56,7 @@ Before you begin, ensure you have the following installed:
 - **Node.js** (v16 or higher)
 - **npm** or **yarn**
 - **MongoDB** (local or Atlas)
-- **OpenAI API Key**
+- **GoogleAI API Key**
 - **ImageKit Account** (for image uploads)
 
 ## 🔑 Key Features Explained
