@@ -102,6 +102,8 @@ const PersonalInfoForm = ({
             <p>Remove Background</p>
             <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
               <input
+                name="removeBackground"
+                id="removeBackground"
                 type="checkbox"
                 className="sr-only peer"
                 onChange={() => setRemoveBackground((prev) => !prev)}
