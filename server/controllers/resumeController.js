@@ -2,7 +2,7 @@
 // POST: /api/resumes/create
 
 import fs from "fs";
-import imageKit from "@imagekit/nodejs";
+import imagekit from "../configs/imageKit.js";
 import Resume from "../models/Resume.js";
 
 export const createResume = async (req, res) => {
@@ -98,36 +98,37 @@ export const updateResume = async (req, res) => {
     } else {
       resumeDataCopy = structuredClone(resumeData);
     }
-    if (image) {
-        try {
-          const imageBufferDate = fs.readFileSync(image.path);
+   if (image) {
+     try {
+       const imageBufferDate = fs.readFileSync(image.path);
 
-          const response = await imageKit.upload({
-            file: imageBufferDate,
-            fileName: `resume_${Date.now()}.png`,
-            folder: "user-resumes",
-            transformation: {
-              pre:
-                "w-300, h-300, fo-face, z-0.75" +
-                (removeBackground ? ",e-bgremove" : ""),
-            },
-          });
+       const response = await imagekit.upload({
+         file: imageBufferDate,
+         fileName: `resume_${Date.now()}.png`,
+         folder: "/user-resumes",
+         transformation: {
+           pre:
+             "w-300,h-300,fo-face,z-0.75" +
+             (removeBackground ? ",e-bgremove" : ""),
+         },
+       });
 
-          resumeDataCopy.personal_info.image = response.url;
-          fs.unlinkSync(image.path);
-        } catch (uploadError) {
-          // Clean up uploaded file even if upload fails
-          if (fs.existsSync(image.path)) {
-            fs.unlinkSync(image.path);
-          }
-          console.error("Image upload error:", uploadError);
-          return res.status(500).json({
-            message: "Failed to upload image",
-            error: uploadError.message,
-          });
-        }
+       resumeDataCopy.personal_info.image = response.url;
 
-    }
+       // Clean up uploaded file
+       fs.unlinkSync(image.path);
+     } catch (uploadError) {
+       // Clean up uploaded file even if upload fails
+       if (fs.existsSync(image.path)) {
+         fs.unlinkSync(image.path);
+       }
+       console.error("Image upload error:", uploadError);
+       return res.status(500).json({
+         message: "Failed to upload image",
+         error: uploadError.message,
+       });
+     }
+   }
 
     const resume = await Resume.findOneAndUpdate(
       { userId, _id: resumeId },
