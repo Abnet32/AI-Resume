@@ -2,7 +2,7 @@ import React from "react";
 
 const Banner = () => {
  return (
-        <a href="https://prebuiltui.com" className="flex items-center justify-center group w-full py-1.5 font-medium text-sm text-white text-center bg-[#7668ff]">
+        <a href="#" className="flex items-center justify-center group w-full py-1.5 font-medium text-sm text-white text-center bg-[#7668ff]">
             <div className="flex flex-wrap items-center gap-1 justify-center group-hover:bg-white/15 transition duration-300 px-4 py-1 rounded-full">
                 <p>Explore a growing library of over 10+ beautifully crafted, customizable resumes.</p>
                 <svg className="mt-px" width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
