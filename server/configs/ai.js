@@ -1,8 +1,4 @@
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const ai = new OpenAI({
-  apiKey: "AIzaSyCi6itCFtqf_u5105kIiFCegMx4aL8OGfI",
-  baseURL: process.env.OPENAI_BASE_URL,
-});
-
+const ai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 export default ai;

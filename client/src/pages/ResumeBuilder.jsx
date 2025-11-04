@@ -253,6 +253,7 @@ const ResumeBuilder = () => {
                         professional_summary: data,
                       }))
                     }
+                    setResumeData={setResumeData} // ✅ pass the setter
                   />
                 )}
                 {activeSection.id === "experience" && (
