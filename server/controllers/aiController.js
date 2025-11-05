@@ -32,7 +32,7 @@ export const enhanceProfessionalSummary = async (req, res) => {
     }
 
     const prompt = `
-You are an expert resume writer. Your task is to enhance the given professional summary to make it more impactful and concise. The summary should be 1-2 sentences also highlighting key skills, experience, and achievements relevant to a professional resume. Make it compelling and ATS-friendly. and only returen text no options or anything else:
+You are an expert resume writer. Your task is to enhance the given professional summary to make it more impactful and concise. The summary should be 1 sentences also highlighting key skills, experience, and achievements relevant to a professional resume. Make it compelling and ATS-friendly. and only returen text no options or anything else:
 "${userContent}"`;
 
     const result = await model.generateContent(prompt);
@@ -57,7 +57,32 @@ export const enhanceJobDescription = async (req, res) => {
     }
 
     const prompt = `
-You are an expert resume writer. Your task is to enhance the given job description to make it more detailed and impactful. The enhanced job description should be 1-2 sentences and clearly outline key responsibilities, achievements, and skills required for the role. Make it compelling and ATS-friendly. and only returen text no options or anything else:
+You are an expert resume writer. Your task is to enhance the given job description to make it more detailed and impactful. The enhanced job description should be 1 sentences and clearly outline key responsibilities, achievements, and skills required for the role. Make it compelling and ATS-friendly. and only returen text no options or anything else:
+"${userContent}"`;
+
+    const result = await model.generateContent(prompt);
+    const enhancedContent = result.response.text();
+
+    return res.status(200).json({ enhancedContent });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
+
+// ==============================
+// Enhance Project Description
+// POST: /api/ai/enhance-pro-desc
+// ==============================
+export const enhanceProjectDescription = async (req, res) => {
+  try {
+    const { userContent } = req.body;
+
+    if (!userContent) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    const prompt = `
+You are an expert resume writer. Your task is to enhance the given project description to make it more detailed and impactful. The enhanced project description should be 1 sentences and clearly outline key responsibilities, achievements, and skills required for the role. Make it compelling and ATS-friendly. and only returen text no options or anything else:
 "${userContent}"`;
 
     const result = await model.generateContent(prompt);
